@@ -11,7 +11,17 @@ import com.quiz.lesson03.model.RealEstate;
 public interface RealEstateDAO {
 	public RealEstate selectRealEstate(int id);
 	public List<RealEstate> selectRealEstateByRentPrice(Integer rentPrice);
-	public List<RealEstate> selectRealEstateByAreaPrice(@Param("area") int area, @Param("price")int price);
+	public List<RealEstate> selectRealEstateByAreaPrice(
+			@Param("area") int area,    // // @Param => 파라미터들을 map으로 만든다
+			@Param("price")int price);
+	public int insertRealEstate(RealEstate realEstate);
+	public int insertRealEstateAsField(
+			@Param("realtorId") int realtorId, 
+			@Param("address") String address, 
+			@Param("area") int area, 
+			@Param("type") String type, 
+			@Param("price") int price,
+			@Param("rentPrice") Integer renPrice);
 }
 
 
