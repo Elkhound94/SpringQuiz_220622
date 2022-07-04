@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+
+
+.a2{
+	height:100px;
+}
+ul{
+	list-style:none;
+}
+li{
+	height:50px;
+	
+}
+a{
+	color:white;
+	font-size:20px;
+}
+a:hover{
+	color:white;
+}

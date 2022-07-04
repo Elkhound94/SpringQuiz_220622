@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,47 +16,45 @@
 </head>
 <body>
 	<div class="container">
-		<h1>1. 후보자 득표율</h1>
-		<table class="table text-center font-weight-bold">
+		<h1>회원정보 리스트</h1>
+		<table class="table text-center">
 			<thead>
 				<tr>
-					<th>기호</th>
-					<th>득표수</th>
-					<th>득표율</th>
+					<th>No</th>
+					<th>이름</th>
+					<th>전화번호</th>
+					<th>국적</th>
+					<th>이메일</th>
+					<th>자기소개</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="candidate" items="${candidates}" varStatus="status">
+				<c:forEach var="member" items="${members}" varStatus="status">
 					<tr>
 						<td>${status.count}</td>
-						<td>${candidate}</td>
+						<td>${member.name}</td>
 						<td>
-						<c:set var="temp" value="${candidate / totalCount}" />
-						<fmt:formatNumber value="${temp}" type="percent" /></td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	
-	
-		<h1>카드 명세서</h1>
-		<table class="table text-center font-weight-bold">
-			<thead>
-				<tr>
-					<th>사용처</th>
-					<th>가격</th>
-					<th>사용 날짜</th>
-					<th>할부</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="cardBill" items="${cardBills}" varStatus="status">
-					<tr>
-						<td>${cardBill.store}</td>
-						<td><fmt:formatNumber value="${cardBill.pay}" type="currency" groupingUsed="true" /></td>
-						<td><fmt:parseDate var="tempDate" value="${cardBill.date}" pattern="yyyy-MM-dd" />
-							<fmt:formatDate value="${tempDate}" pattern="yyyy년 MM월 dd일" /></td>
-						<td>${cardBill.installment}</td>
+							<c:choose>
+								<c:when test="${fn:startsWith(member.phoneNumber, '010')}">
+									${member.phoneNumber}
+								</c:when>
+								<c:otherwise>
+									유효하지 않은 전화번호
+								</c:otherwise>
+							</c:choose>
+							</td>
+						<td>${fn:replace(member.nationality, '삼국시대', '삼국-')}</td>
+						<td><span class="font-weight-bold">${fn:split(member.email, '@')[0]}</span>@${fn:split(member.email, '@')[1]}</td>
+						<td class="text-left">
+							<c:choose>
+								<c:when test="${fn:length(member.introduce) >= 15}">
+									${fn:substring(member.introduce, 0, 15)} ...
+								</c:when>
+								<c:otherwise>
+									${fn:substring(member.introduce, 0, 15)}
+								</c:otherwise>
+							</c:choose>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
