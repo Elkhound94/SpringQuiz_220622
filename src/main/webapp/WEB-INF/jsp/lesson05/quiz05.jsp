@@ -17,30 +17,59 @@
 </head>
 
 <body>
-	<div>
+${result.date}
+	<div id="wrap">
 		<div class="d-flex">
 			<div class="a1 col-2 bg-primary p-0 m-0">
 			<div class="pt-3 pb-4 text-center"><img src="/img/lesson05quiz05/sig2.png" width="100px"></div>
 				<ul class="font-wiehgt-bold">
-					<li><a href="#">날씨</a></li>
-					<li><a href="#">날씨입력</a></li>
+					<li><a href="quiz05">날씨</a></li>
+					<li><a href="quiz05_1">날씨입력</a></li>
 					<li><a href="#">테마날씨</a></li>
 					<li><a href="#">관측기후</a></li>
 				</ul>
 			</div>
-			<div class="a1 col-10 bg-secondary pt-3">
+			<div class="a1 col-10 pt-3">
 				<h1>과거날씨</h1>
 				<table class="table text-center">
 					<thead>
-						<th>날짜</th>
-						<th>날씨</th>
-						<th>기온</th>
-						<th>강수량</th>
-						<th>미세먼지</th>
-						<th>풍속</th>
+						<tr>
+							<th>날짜</th>
+							<th>날씨</th>
+							<th>기온</th>
+							<th>강수량</th>
+							<th>미세먼지</th>
+							<th>풍속</th>
+						</tr>
 					</thead>
 					<tbody>
-						
+						<c:forEach var="result" items="${results}">
+							<tr>
+								<td>
+									<fmt:formatDate value="${result.date}" pattern="yyyy년 MM월 dd일" />
+								</td>
+								<td>
+									<c:choose>
+										<c:when test="${result.weather eq '비'}">
+											<img src="/img/lesson05quiz05/rainy.jpg" />
+										</c:when>
+										<c:when test="${result.weather eq '흐림'}">
+											<img src="/img/lesson05quiz05/cloudy.jpg" />
+										</c:when>
+										<c:when test="${result.weather eq '구름조금'}">
+											<img src="/img/lesson05quiz05/partlyCloudy.jpg" />
+										</c:when>
+										<c:otherwise>
+											<img src="/img/lesson05quiz05/sunny.jpg" />
+										</c:otherwise>
+									</c:choose>
+								</td>
+								<td>${result.temperatures}℃</td>
+								<td>${result.precipitation}mm</td>
+								<td>${result.microDust}</td>
+								<td>${result.windSpeed}km/h</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
