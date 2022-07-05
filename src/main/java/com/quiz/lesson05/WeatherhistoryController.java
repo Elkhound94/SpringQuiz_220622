@@ -15,7 +15,7 @@ import com.quiz.lesson05.model.Weatherhistory;
 public class WeatherhistoryController {
 
 	@Autowired
-	WeatherhistoryBO weatherhistoryBO;
+	private WeatherhistoryBO weatherhistoryBO;
 	
 	// http://localhost:8080/lesson05/quiz05
 	@RequestMapping("/quiz05")
