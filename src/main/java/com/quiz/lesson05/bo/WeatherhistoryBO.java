@@ -12,7 +12,7 @@ import com.quiz.lesson05.model.Weatherhistory;
 public class WeatherhistoryBO {
 	
 	@Autowired
-	WeatherhistoryDAO weatherhistoryDAO;
+	private WeatherhistoryDAO weatherhistoryDAO;
 	
 	public List<Weatherhistory> getWeatherhistory() {
 		return weatherhistoryDAO.selectWeatherhistory();

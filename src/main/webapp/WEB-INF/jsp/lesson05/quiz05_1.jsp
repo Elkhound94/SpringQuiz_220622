@@ -22,7 +22,7 @@
 <script>
 	$(function() {
 		$("#datepicker").datepicker({
-			
+			dateFormat: "yy년 mm월 dd일"
 		});
 	});
 </script>
