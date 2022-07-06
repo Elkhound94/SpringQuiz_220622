@@ -19,13 +19,7 @@
   <link rel="stylesheet" href="/resources/demos/style.css">
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-<script>
-	$(function() {
-		$("#datepicker").datepicker({
-			dateFormat: "yy년 mm월 dd일"
-		});
-	});
-</script>
+
 </head>
 <body>
 	<div>
@@ -106,6 +100,12 @@
 			</div>
 		</footer>
 	</div>
-	
+	<script>
+		$(document).ready(function(){
+			$("#datepicker").datepicker({
+				dateFormat: "yy년 mm월 dd일"
+			});
+		});
+	</script>
 </body>
 </html>
